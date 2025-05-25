@@ -1,4 +1,4 @@
-azure_subscription_id = "your-sub-id"
+azure_subscription_id = "b9754b8b-35b4-45ee-81a3-633acb57e1ff"
 environment           = "dev"
 location              = "swedencentral"
 location_short        = "sc"
