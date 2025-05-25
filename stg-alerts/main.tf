@@ -1,16 +1,15 @@
 resource "azurerm_monitor_metric_alert" "this" {
-  for_each = toset(var.scopes)
+  for_each = var.list_of_storage_accounts
 
-  name                = "${var.criteria.metric_name}-${var.environment}"
-  resource_group_name = azurerm_resource_group.this.name
+  name                = "${var.criteria.metric_name}-${var.environment}-${element(split("/", each.value), length(split("/", each.value)) - 1)}" // Gets the end of the resource id
+  resource_group_name = var.resource_group_name
   scopes = [
-    each.key
+    each.value
   ]
-  description          = var.description
-  severity             = var.criteria.severity
-  window_size          = var.window_size
-  frequency            = var.frequency
-  target_resource_type = var.criteria.target_resource_type
+  description = var.description
+  severity    = var.severity
+  window_size = var.window_size
+  frequency   = var.frequency
 
   criteria {
     metric_name            = var.criteria.metric_name

@@ -2,16 +2,12 @@ variable "environment" {
   type = string
 }
 
-variable "metric_alert_name" {
-  type = string
-}
-
 variable "resource_group_name" {
   type = string
 }
 
-variable "scopes" {
-  type = list(string)
+variable "list_of_storage_accounts" {
+  type = map(string)
 }
 
 variable "description" {
@@ -19,7 +15,7 @@ variable "description" {
 }
 
 variable "severity" {
-  type = string
+  type = number
 }
 
 variable "window_size" {
